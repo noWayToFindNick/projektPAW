@@ -1,50 +1,42 @@
 {extends file="reserv.tpl"}
 
-{block name=header}
-
-<!-- Banner -->
-<section id="banner">
-<header>
-	<h2>Dzień dobry, <strong>Kacper</strong></h2>
-	<p>
-		W tej sekcji możesz dokonać rezerwacji interesującego Cię roweru.
-	</p>
-</header>
-</section>
-
+{block name=offer}
+    <section id="features" class="container special">
+        <header>
+            {block name=searching}{/block}
+        </header>
+        <div class="row" id="bikesToReload">
+            {include file="bikesList.tpl"}
+        </div>
+        <br><br>
+        {if count($conf->roles) > 0}
+            {block name=rent}{/block}
+        {/if}
+    </section>
 {/block}
 
-{block name=panel}
+{block name=searching}
+    <form id="searchForm" class="rentForm" onsubmit="ajaxPostForm('searchForm','{$conf->action_root}bikesOnly','bikesToReload'); return false;">
+        <input type="text" name="search">
+        <br><button class="space">Szukaj</button>
+        {if count($conf->roles) > 0}
+            <button id="scroll" href="#jumpHere" class ="circled scrolly" class="space">W dół</button>
+        {/if}
+    </form><br><br>
+{/block}
 
-<div class="wrapper style1">
-
-	<div class="container">
-		<article id="main" class="special">
-			<header>
-				<h2><a href="">Rezerwacja</a></h2>
-				<p>
-					Wybierz typ roweru i termin rezerwacji.
-				</p>
-			</header>
-			<form id="optionsForm">
-				<select>
-					<option>Model 1</option>
-					<option>Model 2</option>
-					<option>Model 3</option>
-					<option>Model 4</option>
-					<option>Model 5</option>
-					<option>Model 6</option>
-					<option>Model 7</option>
-					<option>Model 8</option>
-					<option>Model 9</option>
-					<option>Model 10</option>
-					</select>
-					<p id="left"> od kiedy<br> <input type="date"> </p>
-					<p id="right"> do kiedy<br> <input type="date"> </p>
-				<button>Cena</button>
-				<button>Zamów</button>
-			</form>
-	</div>
-</div>
-
+{block name=rent}
+    <div id="jumpHere"></div>
+    <hr>
+    <form class="rentForm" action="{$conf->action_root}reservation" method="post">
+        <h2>Rezerwacja</h2><br><br>
+        <p>Model do wypożyczenia</p>
+        <input type="text" id="input" name="modelToReserv"><br>
+        <p>Od kiedy</p>
+        <input type="datetime-local" name="dateStart"><br><br>
+        <p>Do kiedy</p>
+        <input type="datetime-local" name="dateEnd">
+        <br><br><br><button>Zarezerwuj</button>
+    </form>
+    {include file='messages.tpl'}
 {/block}

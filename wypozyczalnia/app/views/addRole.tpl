@@ -8,12 +8,23 @@
         <header>
             <h1><a href="" id="logo">{$title|default:"Title"}</a></h1>
             <hr />
-            <input placeholder="Login" type="text" name="login" value="{$form->login}"><br>
-            <input placeholder="Hasło" type="password" name="password">
+            <select>
+                <option>user1</option>
+                <option>user2</option>
+                <option>user3</option>
+                <option>user4</option>
+            </select><br>
+            <select>
+                <option>worker</option>
+                <option>admin</option>
+                <option>user</option>
+                <option>rola 4</option>
+            </select>
         </header>
         <footer>
             <button>{$buttonText|default:"OK"}</button>
         </footer>
+
 
         {include file='messages.tpl'}
 
