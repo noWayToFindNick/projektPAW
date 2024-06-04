@@ -4,7 +4,7 @@ use core\App;
 use core\Utils;
 
 App::getRouter()->setDefaultRoute('mainView'); #default action
-//App::getRouter()->setLoginRoute('login'); #action to forward if no permissions
+App::getRouter()->setLoginRoute('login'); #action to forward if no permissions
 
 Utils::addRoute('mainView', 'MainCtrl');
 //Utils::addRoute('action_name', 'controller_class_name');
@@ -14,39 +14,39 @@ Utils::addRoute('registerView', 'RegCtrl');
 Utils::addRoute('reservationView', 'ReservCtrl');
 
 Utils::addRoute('bikesOnly', 'ReservCtrl'); //AJAX
-Utils::addRoute('tableOnly', 'ForAdminCtrl'); //AJAX
-Utils::addRoute('rentalsOnly', 'ForWorkerCtrl'); //AJAX
-Utils::addRoute('rentalsOnlyUser', 'ForUserCtrl'); //AJAX
-Utils::addRoute('rentalsToAcceptOnly', 'ForWorkerCtrl'); //AJAX
+Utils::addRoute('tableOnly', 'ForAdminCtrl', ['admin']); //AJAX
+Utils::addRoute('rentalsOnly', 'ForWorkerCtrl', ['worker']); //AJAX
+Utils::addRoute('rentalsOnlyUser', 'ForUserCtrl', ['worker']); //AJAX
+Utils::addRoute('rentalsToAcceptOnly', 'ForWorkerCtrl', ['worker']); //AJAX
 
-Utils::addRoute('addBikeView', 'ForWorkerCtrl');
-Utils::addRoute('deleteBikeView', 'ForWorkerCtrl');
-Utils::addRoute('editBikeView', 'ForWorkerCtrl');
-Utils::addRoute('deleteUserView', 'ForAdminCtrl');
-Utils::addRoute('addRoleToUserView', 'ForAdminCtrl');
-Utils::addRoute('disableRoleToUserView', 'ForAdminCtrl');
-Utils::addRoute('addRoleView', 'ForAdminCtrl');
-Utils::addRoute('disableRoleView', 'ForAdminCtrl');
-Utils::addRoute('acceptRentalsView', 'ForWorkerCtrl');
-Utils::addRoute('rentalsView', 'ForWorkerCtrl');
-Utils::addRoute('userRentalsView', 'ForUserCtrl');
-Utils::addRoute('adminPanelView', 'ForAdminCtrl');
+Utils::addRoute('addBikeView', 'ForWorkerCtrl', ['worker']);
+Utils::addRoute('deleteBikeView', 'ForWorkerCtrl', ['worker']);
+Utils::addRoute('editBikeView', 'ForWorkerCtrl', ['worker']);
+Utils::addRoute('deleteUserView', 'ForAdminCtrl', ['admin']);
+Utils::addRoute('addRoleToUserView', 'ForAdminCtrl', ['admin']);
+Utils::addRoute('disableRoleToUserView', 'ForAdminCtrl', ['admin']);
+Utils::addRoute('addRoleView', 'ForAdminCtrl', ['admin']);
+Utils::addRoute('disableRoleView', 'ForAdminCtrl', ['admin']);
+Utils::addRoute('acceptRentalsView', 'ForWorkerCtrl', ['worker']);
+Utils::addRoute('rentalsView', 'ForWorkerCtrl', ['worker']);
+Utils::addRoute('userRentalsView', 'ForUserCtrl', ['user']);
+Utils::addRoute('adminPanelView', 'ForAdminCtrl', ['admin']);
 
 Utils::addRoute('login', 'LogCtrl');
-Utils::addRoute('logout', 'LogCtrl');
+Utils::addRoute('logout', 'LogCtrl', ['user']);
 Utils::addRoute('register', 'RegCtrl');
-Utils::addRoute('addBike', 'ForWorkerCtrl');
-Utils::addRoute('deleteBike', 'ForWorkerCtrl');
-Utils::addRoute('editBike', 'ForWorkerCtrl');
-Utils::addRoute('deleteUser', 'ForAdminCtrl');
-Utils::addRoute('addRoleToUser', 'ForAdminCtrl');
-Utils::addRoute('disableRoleToUser', 'ForAdminCtrl');
-Utils::addRoute('addRole', 'ForAdminCtrl');
-Utils::addRoute('disableRole', 'ForAdminCtrl');
-Utils::addRoute('reservation', 'ReservCtrl');
+Utils::addRoute('addBike', 'ForWorkerCtrl', ['worker']);
+Utils::addRoute('deleteBike', 'ForWorkerCtrl', ['worker']);
+Utils::addRoute('editBike', 'ForWorkerCtrl', ['worker']);
+Utils::addRoute('deleteUser', 'ForAdminCtrl', ['admin']);
+Utils::addRoute('addRoleToUser', 'ForAdminCtrl', ['admin']);
+Utils::addRoute('disableRoleToUser', 'ForAdminCtrl', ['admin']);
+Utils::addRoute('addRole', 'ForAdminCtrl', ['admin']);
+Utils::addRoute('disableRole', 'ForAdminCtrl', ['admin']);
+Utils::addRoute('reservation', 'ReservCtrl', ['user']);
 
-Utils::addRoute('accept', 'ForWorkerCtrl');
-Utils::addRoute('decline', 'ForWorkerCtrl');
+Utils::addRoute('accept', 'ForWorkerCtrl', ['worker']);
+Utils::addRoute('decline', 'ForWorkerCtrl', ['worker']);
 
-Utils::addRoute('inTerm', 'ForWorkerCtrl');
-Utils::addRoute('notInTerm', 'ForWorkerCtrl');
+Utils::addRoute('inTerm', 'ForWorkerCtrl', ['worker']);
+Utils::addRoute('notInTerm', 'ForWorkerCtrl', ['worker']);
