@@ -86,7 +86,7 @@ class ForWorkerCtrl{
         if($this->validate())
         {
             try{
-                App::getDB()->insert("bikes", ["model" => $this->form->model, "description" => $this->form->description, "price" => $this->form->price, "id_type" => $this->form->bikeType, "picture" => $this->form->picture, "bike_condition" => "Dostępny"]);
+                App::getDB()->insert("bikes", ["model" => $this->form->model, "description" => $this->form->description, "price" => $this->form->price, "id_type" => $this->form->bikeType, "picture" => $this->form->picture, "bike_condition" => "Dostępny", "is_active" => 1]);
             }
             catch (\PDOException $e){
                 Utils::addErrorMessage('Wystąpił błąd podczas zapisu danych');
@@ -130,7 +130,7 @@ class ForWorkerCtrl{
     public function action_deleteBike(){
         $this->form->id = ParamUtils::getFromRequest('bikeToDel');
         try {
-            App::getDB()->delete("bikes", ["id_bike" => $this->form->id]);
+            App::getDB()->update("bikes", ["is_active" => 0], ["id_bike" => $this->form->id]);
         } catch (\PDOException $e) {
             Utils::addErrorMessage('Wystąpił błąd podczas usuwania rekordu');
             if (App::getConf()->debug)

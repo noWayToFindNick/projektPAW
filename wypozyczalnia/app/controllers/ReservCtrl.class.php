@@ -24,7 +24,7 @@ class ReservCtrl{
         $this->validate(); // skoro walidacja jest ueless to nie daje w ifie tylko wywoluje zeby miec zmienna do warunkow w WHERE
 
         try {
-            $this->bikes = App::getDB()->select("bikes",["[><]types_of_bikes" =>["id_type" => "id_type"]],["id_bike","model","description","price","picture","type", "bike_condition"], ["OR" => ["model[~]" => $this->form->search."%", "type[~]" => $this->form->search."%", "price[~]" => $this->form->search."%"]]);
+            $this->bikes = App::getDB()->select("bikes",["[><]types_of_bikes" =>["id_type" => "id_type"]],["id_bike","model","description","price","picture","type", "bike_condition"], [ "AND" => ["OR" => ["model[~]" => $this->form->search."%", "type[~]" => $this->form->search."%", "price[~]" => $this->form->search."%"], "is_active" => 1]]);
         }
         catch (\PDOException $e) {
             Utils::addErrorMessage('Wystąpił błąd podczas pobierania informacji z bazy danych');
